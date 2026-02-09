@@ -8,5 +8,6 @@ This program lets you modify the translation files (`.btf`) of the game **Worker
 - Load an existing `.btf` file.
 - Edit the translations.
 - Save the modified `.btf` file.
+- If you have translation excel file where the executable is, you can type its name (or path from the executable) to rename the translations via the convert button.
 
 **Remember to make a backup of the file you want to edit.**
