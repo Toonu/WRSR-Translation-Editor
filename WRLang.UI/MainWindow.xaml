@@ -10,12 +10,22 @@
     Height="450"
     mc:Ignorable="d">
     <Window.CommandBindings>
-        <CommandBinding Command="ApplicationCommands.Open" Executed="OpenCommand_Executed" />
-        <CommandBinding
-            CanExecute="Save_CanExecute"
-            Command="ApplicationCommands.Save"
-            Executed="SaveCommand_Executed" />
-        <CommandBinding Command="ApplicationCommands.SaveAs" Executed="SaveAsCommand_Executed" />
+        <CommandBinding Command="ApplicationCommands.Open"    Executed="OpenCommand_Executed" />
+
+        <CommandBinding 
+        Command="ApplicationCommands.Save"
+        CanExecute="Save_CanExecute"
+        Executed="SaveCommand_Executed" />
+
+        <CommandBinding 
+        Command="ApplicationCommands.SaveAs"
+        Executed="SaveAsCommand_Executed" />
+
+        <!-- NEW -->
+        <CommandBinding 
+        Command="{x:Static local:CustomCommands.Convert}"
+        CanExecute="Convert_CanExecute"
+            Executed="ConvertCommand_Executed" />
     </Window.CommandBindings>
     <DockPanel>
         <ToolBarTray DockPanel.Dock="Top">
@@ -33,6 +43,13 @@
                 <Separator />
                 <TextBlock VerticalAlignment="Center">Filter:</TextBlock>
                 <TextBox Width="200" Text="{Binding Filter, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, Delay=1000}" />
+                <Separator />
+                <TextBlock VerticalAlignment="Center">TranslationFileName:</TextBlock>
+                <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding FilePath}" VerticalAlignment="Top" Width="120"/>
+                <Button Command="{x:Static local:CustomCommands.Convert}" 
+ToolTip="Convert...">
+                    <Image Height="16" Source="/reload.jpg" />
+                </Button>
             </ToolBar>
         </ToolBarTray>
         <StatusBar DockPanel.Dock="Bottom">
@@ -45,9 +62,8 @@
         </StatusBar>
         <DataGrid
             Name="Translations"
-            AutoGenerateColumns="False"
             CanUserAddRows="False"
-            ItemsSource="{Binding TranslationsView}">
+            ItemsSource="{Binding TranslationsView}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     MinWidth="50"
@@ -70,6 +86,12 @@
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
+                <DataGridTextColumn x:Name="dataGridTextColumn" Header="Original"
+                    Binding="{Binding Original}"
+                    MinWidth="50"
+                    IsReadOnly="True"
+                    Visibility="{Binding ShowOriginalColumn, 
+                                         Converter={StaticResource BoolToVis}}" />
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

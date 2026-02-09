@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="reload.jpg" />
     <None Remove="Resources\disk-pencil.png" />
     <None Remove="Resources\disk.png" />
     <None Remove="Resources\folder.png" />
@@ -21,10 +22,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ExcelDataReader" Version="3.8.0" />
+    <PackageReference Include="ExcelDataReader.DataSet" Version="3.8.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="10.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\WRLang\WRLang.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="reload.jpg" />
     <Resource Include="Resources\disk-pencil.png" />
     <Resource Include="Resources\disk.png" />
     <Resource Include="Resources\folder.png" />

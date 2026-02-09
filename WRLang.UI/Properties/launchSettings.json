@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Profile 1": {
+    "Main": {
       "commandName": "Project"
     }
   }
