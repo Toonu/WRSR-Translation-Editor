@@ -166,5 +166,20 @@ namespace WRLang.UI {
                 MessageBox.Show(e.Message);
             }
         }
+
+        public string? Filter {
+            set {
+                TranslationsView.Filter = GetFilter(value!);
+            }
+        }
+
+        private Predicate<object> GetFilter(string filter) {
+            return (obj) => {
+                var translation = (obj as Translation)!;
+
+                return translation.Text.Contains(filter, StringComparison.CurrentCultureIgnoreCase) ||
+                       (uint.TryParse(filter, out uint filterId) && filterId == translation.Id);
+            };
+        }
     }
 }
