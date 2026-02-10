@@ -173,7 +173,7 @@ namespace WRLang.UI {
             }
         }
 
-        private Predicate<object> GetFilter(string filter) {
+        private static Predicate<object> GetFilter(string filter) {
             return (obj) => {
                 var translation = (obj as Translation)!;
 
